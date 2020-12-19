@@ -1,0 +1,33 @@
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td,
+th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+}
+
+tr:nth-child(even) {
+	background-color: #dddddd;
+}
+
+td a i {
+	font-size: 16px;
+	margin-right: 1rem;
+}
+
+td a:first-child {
+	color: #dc3545;
+}
+
+td a:nth-child(2) {
+	color: #ffc107;
+}
+
+td a:last-child {
+	color: #28a745;
+}
