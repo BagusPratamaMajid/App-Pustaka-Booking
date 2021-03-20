@@ -123,7 +123,7 @@ class Buku extends CI_Controller
 						$this->load->view('templates/footer');
 				} else {
 						$data = [
-								'nama_kategori' => $this->input->post('kategori')
+								'kategori' => $this->input->post('kategori')
 						];
 
 						$this->ModelBuku->simpanKategori($data);
@@ -135,7 +135,7 @@ class Buku extends CI_Controller
 
 		public function hapusKategori() 
 		{
-				$where = ['id_kategori' => $this->uri->segment(3)];
+				$where = ['id' => $this->uri->segment(3)];
 				$this->ModelBuku->hapusKategori($where);
 
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Kategori buku berhasil dihapus </div>');

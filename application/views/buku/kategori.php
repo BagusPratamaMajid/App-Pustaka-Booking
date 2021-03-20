@@ -32,12 +32,12 @@
 													<?php $no = 1; foreach ($kategori as $k) : ?>
 															<tr>
 																	<th scope="row"><?= $no; ?></th>
-																	<td><?= $k['nama_kategori']; ?></td>
+																	<td><?= $k['kategori']; ?></td>
 																	<td>
-																			<a href="<?= base_url('buku/ubahKategori/').$k['id_kategori']; ?>" class="badge badge-warning">
+																			<a href="<?= base_url('buku/ubahKategori/').$k['id']; ?>" class="badge badge-warning">
 																					<i class="fas fa-edit"> Ubah</i>
 																			</a>
-																			<a href="<?= base_url('buku/hapusKategori/').$k['id_kategori']; ?>" onclick="return confirm('Anda yakin ingin lanjut menghapus <?= $judul.' '.$k['nama_kategori']; ?>');" class="badge badge-danger">
+																			<a href="<?= base_url('buku/hapusKategori/').$k['id']; ?>" onclick="return confirm('Anda yakin ingin lanjut menghapus <?= $judul.' '.$k['kategori']; ?>');" class="badge badge-danger">
 																					<i class="fas fa-trash"> Hapus</i>
 																			</a>
 																	</td>
