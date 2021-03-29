@@ -1,7 +1,5 @@
 <?php 
  
-	
-	
 	defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	class Home extends CI_Controller {
@@ -25,18 +23,19 @@
 
 						$this->load->view('templates/templates-user/header', $data); 
 						$this->load->view('buku/daftarbuku', $data);
-
+						$this->load->view('templates/templates-user/modal');
 						$this->load->view('templates/templates-user/footer', $data); 
 					
 					} else { 
 						$data['user'] = 'Pengunjung'; 
 						$this->load->view('templates/templates-user/header', $data); 
 						$this->load->view('buku/daftarbuku', $data); 
+						$this->load->view('templates/templates-user/modal');
 						$this->load->view('templates/templates-user/footer', $data); 
 					}
 		}
 
-		public function detailbuku() 
+		public function detailBuku() 
 		{
 			$id = $this->uri->segment(3); 
 			$buku = $this->ModelBuku->joinKategoriBuku(['buku.id' => $id])->result(); 
@@ -47,7 +46,8 @@
 			foreach ($buku as $fields) { 
 				 $data['judul'] = $fields->judul_buku; 
 					$data['pengarang'] = $fields->pengarang; 
-				 $data['penerbit'] = $fields->penerbit; $data['kategori'] =  $fields->kategori; 
+				 $data['penerbit'] = $fields->penerbit;
+					 $data['kategori'] =  $fields->kategori; 
 					$data['tahun'] = $fields->tahun_terbit; 
 					$data['isbn'] = $fields->isbn; 
 					$data['gambar'] = $fields->image; 
