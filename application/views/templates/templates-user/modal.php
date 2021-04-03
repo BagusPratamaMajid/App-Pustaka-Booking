@@ -39,19 +39,30 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<input type="text" class="form-control form-control-user" id="nama" name="nama"
-							placeholder="Nama Lengkap"> </div>
-					<div class="form-group"> <input type="text" class="form-control form-control-user" id="alamat"
-							name="alamat" placeholder="Alamat Lengkap"> </div>
-					<div class="form-group"> <input type="text" class="form-control form-control-user" id="email"
-							name="email" placeholder="Alamat Email"> </div>
+							placeholder="Nama Lengkap">
+							<?= form_error('nama', '<small class="text-danger pl-3">','</small>'); ?> 
+					</div>
+					<div class="form-group"> <input type="text" class="form-control form-control-user" id="alamat" name="alamat" placeholder="Alamat Lengkap"> 
+					<?= form_error('alamat', '<small class="text-danger pl-3">','</small>'); ?> 
+					</div>
+					<div class="form-group"> <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Alamat Email"> 
+					<?= form_error('email', '<small class="text-danger pl-3">','</small>'); ?> 
+					</div>
 					<div class="form-group"> <input type="password" class="form-control form-control-user"
-							id="password1" name="password1" placeholder="Password"> </div>
+							id="password1" name="password1" placeholder="Password"> 
+							<?= form_error('password1', '<small class="text-danger pl-3">','</small>'); ?> 
+					</div>
 					<div class="form-group"> <input type="password" class="form-control form-control-user"
-							id="password2" name="password2" placeholder="Ulangi Password"> </div>
+							id="password2" name="password2" placeholder="Ulangi Password">
+							<?= form_error('password2', '<small class="text-danger pl-3">','</small>'); ?> 
+					</div>
 				</div>
-				<div class="modal-footer"> <button type="button" class="btn btn-outline-secondary"
-						data-dismiss="modal">Close</button> <button type="submit"
-						class="btn btn-outline-primary">Simpan</button> </div>
+				<div class="modal-footer"> 
+				  <button type="button" class="btn btn-outline-secondary"
+						data-dismiss="modal">Close</button> 
+						<button type="submit"
+						class="btn btn-outline-primary">Simpan</button> 
+				</div>
 			</form>
 		</div>
 	</div>

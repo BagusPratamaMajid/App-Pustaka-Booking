@@ -84,6 +84,17 @@
 
 				$this->form_validation->set_rules('password2', 'Repeat Password', 'required|trim|matches[password1]'); 
 				
+   
+			if ($this->form_validation->run() == FALSE) {
+			  $data['buku'] = $this->ModelBuku->getBuku()->result();
+					$data['user'] = 'Pengunjung';
+					$data['judul'] = 'Katalog Buku';
+					$this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Gagal Mendaftar! Terjadi Kesalahan Saat Mengisi Data.</div>');
+     $this->load->view('templates/templates-user/header', $data);
+     $this->load->view('buku/daftarBuku');
+     $this->load->view('templates/templates-user/modal');
+     $this->load->view('templates/templates-user/footer', $data);
+			} else {
 				$email = $this->input->post('email', true); 
 				$data = [ 
 					'nama' => htmlspecialchars($this->input->post('nama', true)), 
@@ -97,7 +108,9 @@
 
 				$this->ModelUser->simpanData($data); 
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Selamat!! akun anggota anda sudah dibuat.</div>'); 
-				redirect(base_url()); 
+				redirect(base_url());
+					}
+			
 			}
 
 			public function myProfil() 
