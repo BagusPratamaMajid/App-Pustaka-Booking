@@ -1,6 +1,6 @@
 <?php 
 
-	defined('BASEPATH') OR exit('No direct script access allowed');
+if (!defined('BASEPATH')) exit('No direct script access allowed');
 	
 	class ModelBooking extends CI_Model {
 	
@@ -22,7 +22,7 @@
 				return $this->db->get($table);
 		}
 
-		public function jenisOrder($where) 
+		public function joinOrder($where) 
 		{
 				$this->db->select('*');
 				$this->db->from('booking');
