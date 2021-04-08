@@ -1,6 +1,5 @@
 <?php 
 
-		
 		defined('BASEPATH') OR exit('No direct script access allowed');
 		date_default_timezone_set('Asia/Jakarta');
 		
@@ -116,6 +115,26 @@
 
 					$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Buku berhasil ditambahkan ke keranjang </div>'); 
 					redirect(base_url('home'));
+				}
+
+				public function hapusbooking() 
+				{
+					$id_buku = $this->uri->segment(3); 
+					$id_user = $this->session->userdata('id_user');
+
+					$this->ModelBooking->deleteData(['id_buku' => $id_buku], 'temp'); 
+					$kosong = $this->db->query("select*from temp where id_user='$id_user'")->num_rows();
+
+					if ($kosong < 1)
+					{
+							$this->session->set_flashdata('pesan', '<div class="alert alert-massege alert-danger" role="alert">Tidak Ada Buku dikeranjang</div>');
+							
+							redirect(base_url());
+							
+						}else{
+						 redirect(base_url('booking'));
+							
+					}
 				}
 		
 		}
