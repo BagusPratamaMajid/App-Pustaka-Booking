@@ -136,6 +136,65 @@
 							
 					}
 				}
+
+				public function bookingSelesai($where) 
+				{
+							// Mengupdate Stok buku dan info buku yang dibooking
+							$this->db->query("UPDATE	buku, temp SET buku.dibooking=buku.dibooking+1, buku.stok=buku.stok-1 WHERE buku.id=temp.id_buku");
+
+						 $tglSekarang = date('Y-m-d');
+							$isiBooking = [
+									'id_booking' => $this->ModelBooking->kodeOtomatis('booking', 'id_booking'),
+									'tgl_booking' => date('Y-m-d H:m:s'),
+									'batas_ambil' => date('Y-m-d', strtotime('+2 days', strtotime($tglSekarang))),
+									'id_user' => $where
+							];
+
+							//menyimpan ke tabel booking dan detail booking, dan mengosongkan tabel temporari 
+							$this->ModelBooking->insertData('booking', $isiBooking);
+							$this->ModelBooking->simpanDetail($where);
+							$this->ModelBooking->kosongkanData('temp');
+
+							redirect(base_url('booking/info'));
+							
+				}
+
+				public function info() 
+				{
+						$where = $this->session->userdata('id_user');
+						$data['user'] = $this->session->userdata('nama');
+						$data['judul'] = "Selesai Booking";
+						$data['useraktif'] = $this->ModelUser->cekData(['id' => $this->session->userdata('id_user')])->result();
+						$data['items'] = $this->db->query("SELECT * FROM booking, booking_detail, buku WHERE booking_detail.id_booking=booking.id_booking AND booking_detail.id_buku=buku.id AND booking.id_user='$where'")->result_array();
+
+						$this->load->view('templates/templates-user/header', $data);
+						$this->load->view('booking/info-booking', $data);
+						$this->load->view('templates/templates-user/modal');
+						$this->load->view('templates/templates-user/footer');
+				}
+
+				public function exportToPdf() { 
+					$id_user = $this->session->userdata('id_user'); 
+					$data['user'] = $this->session->userdata('nama'); 
+					$data['judul'] = "Cetak Bukti Booking"; 
+					$data['useraktif'] = $this->ModelUser->cekData(['id' => $this->session->userdata('id_user')])->result(); 
+					$data['items'] = $this->db->query("SELECT * FROM booking, booking_detail, buku WHERE booking_detail.id_booking=booking.id_booking AND booking_detail.id_buku=buku.id AND booking.id_user='$id_user'")->result_array(); 
+					
+					$this->load->library('dompdf_gen');
+
+					$this->load->view('booking/bukti-pdf', $data); 
+					
+					$paper_size = 'A4'; // ukuran kertas
+					$orientation = 'landscape'; //tipe format kertas potrait atau landscape 
+					$html = $this->output->get_output(); 
+					
+					$this->dompdf->set_paper($paper_size, $orientation);
+     //Convert to PDF
+					$this->dompdf->load_html($html); 
+					$this->dompdf->render(); 
+					$this->dompdf->stream("bukti-booking-$id_user.pdf", array('Attachment' => 0)); 
+					// nama file pdf yang di hasilkan
+			}
 		
 		}
 		
