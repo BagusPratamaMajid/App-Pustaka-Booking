@@ -16,7 +16,7 @@ class Buku extends CI_Controller
 		{
 				$data['judul'] = 'Data Buku';
 				$data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
-				$data['buku'] = $this->ModelBuku->tampil()->result_array();
+				$data['buku'] = $this->ModelBuku->getBuku()->result_array();
 				$data['kategori'] = $this->ModelBuku->getKategori()->result_array();
 
 				$this->form_validation->set_rules('judul_buku', 'Judul Buku', 'required|min_length[3]', [

@@ -40,6 +40,12 @@ class ModelBuku extends CI_Model
 				return $this->db->get()->row($field);
 		}
 
+		public function getLimitBuku() 
+		{
+				$this->db->limit(5);
+				return $this->db->get('buku');
+		}	
+
 		// Manajemen Kategori
 		public function getKategori() 
 		{
@@ -75,4 +81,6 @@ class ModelBuku extends CI_Model
 				$this->db->where($where);
 				return $this->db->get();
 		}
+
+
 }

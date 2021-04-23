@@ -6,7 +6,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 	
 		public function getData($table) 
 		{
-				return $this->db-get($table)->row();
+				return $this->db->get($table)->row();
 		}
 
 		public function getDataWhere($table, $where) 
