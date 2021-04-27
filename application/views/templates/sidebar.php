@@ -4,7 +4,7 @@
 	<!-- Sidebar - Brand -->
 	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
 		<div class="sidebar-brand-icon rotate-n-15">
-			<i class="fas fa-laugh-wink"></i>
+			<i class="fas fa-book"></i>
 		</div>
 		<div class="sidebar-brand-text mx-3">Pustaka Booking</div>
 	</a>
@@ -78,6 +78,36 @@
 
 	<!-- Divider -->
 	<hr class="sidebar-divider">
+
+	<!-- Heading -->
+	<div class="sidebar-heading">
+		Laporan
+	</div>
+	<!-- Nav Item - Dashboard -->
+	<li class="nav-item active">
+	<li class="nav-item">
+		<a href="<?= base_url('pinjam'); ?>" class="nav-link pb-0">
+			<i class="fa fa-fw fa-shopping-cart"></i>
+			<span>Laporan Data Buku</span>
+		</a>
+	</li>
+	<li class="nav-item">
+		<a href="<?= base_url('pinjam/daftarBooking'); ?>" class="nav-link pb-0">
+			<i class="fa fa-fw fa-shopping-cart"></i>
+			<span>Laporan Data Buku</span>
+		</a>
+	</li>
+	<li class="nav-item">
+		<a href="<?= base_url('pinjam/daftarBooking'); ?>" class="nav-link pb-0">
+			<i class="fa fa-fw fa-shopping-cart"></i>
+			<span>Laporan Peminjaman</span>
+		</a>
+	</li>
+
+	</li>
+
+	<!-- Divider -->
+	<hr class="sidebar-divider mt-3">
 
 
 	<!-- Sidebar Toggler (Sidebar) -->

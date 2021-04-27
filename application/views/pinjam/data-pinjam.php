@@ -1,7 +1,4 @@
 <div class="container">
-	<div class="d-sm-flex align-items-center justify-content-between mb-4">
-		<h1 class="h3 mb-0 text-gray-800"><?= $judul; ?></h1>
-	</div>
 	<center>
 		<table>
 			<tr>
@@ -27,9 +24,11 @@
 								<td><?= $p['id_buku']; ?></td>
 								<td><?= $p['tgl_kembali']; ?></td>
 								<td> <?= date('Y-m-d'); ?> <input type="hidden" name="tgl_pengembalian"
-										id="tgl_pengembalian" value="<?= date('Y-m-d'); ?>"> </td>
+										id="tgl_pengembalian" value="<?= date('Y-m-d'); ?>"> 
+								</td>
 								<td> <?php $tgl1 = new DateTime($p['tgl_kembali']); $tgl2 = new DateTime(); $selisih = $tgl2->diff($tgl1)->format("%a"); echo $selisih; ?>
-									Hari </td>
+									Hari 
+								</td>
 								<td><?= $p['denda']; ?></td>
 								<?php if ($p['status'] == "Pinjam") { $status = "warning"; } else { $status = "secondary"; } ?>
 								<td><i class="btn btn-outline-<?= $status; ?> btn-sm"><?= $p['status']; ?></i></td>

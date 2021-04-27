@@ -1,7 +1,4 @@
 <div class="container">
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-								<h1 class="h3 mb-0 text-gray-800"><?= $judul; ?></h1>
-						</div>
 	<center>
 		<table>
 			<tr>
@@ -40,9 +37,9 @@
 			<tr>
 				<td align="center">
 					<a href="<?= base_url('pinjam/daftarBooking'); ?>" class="btn btn-link">
-				   <i class="fas fa-fw fa-refresh"></i> Refresh
+						<i class="fas fa-fw fa-refresh"></i> Refresh
 					</a>
-			</td>
+				</td>
 			</tr>
 		</table>
 	</center>
