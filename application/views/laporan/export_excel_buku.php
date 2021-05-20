@@ -1,25 +1,17 @@
-<?php 
-		header("Content-type: application/vnd.ms-excel");
-		header("Content-Disposition: attachment; filename=$title.xls");
-		header("Pragma: no-cache");
-		header("Expires: 0");
-?>
-
-<!DOCTYPE html>
-<html>
-
-<head>
-	<title></title>
-</head>
-
-<body>
-	<h3>
-		<center>
-			Laporan Data Buku Perpustakaan Online
-		</center>
+	<?php
+    header("Content-type: application/vnd.ms-excel");
+    header("Content-Disposition: attachment; filename=$title.xls");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+				?>
+	
+<h3>
+	<center>
+		Laporan Data Buku Perpustakaan Online
+	</center>
 	</h3>
 	<br>
-	<table class="table-data" border="1">
+	<table border="1">
 		<thead>
 			<tr>
 				<th>No</th>
@@ -33,8 +25,8 @@
 		</thead>
 		<tbody>
 			<?php 
-							$no = 1;
-							foreach ($buku as $b) :
+				$no = 1;
+				foreach ($buku as $b) :
 					?>
 			<tr>
 				<th scope="row"><?= $no++; ?></th>
@@ -48,7 +40,3 @@
 			<?php endforeach; ?>
 		</tbody>
 	</table>
-
-</body>
-
-</html>
