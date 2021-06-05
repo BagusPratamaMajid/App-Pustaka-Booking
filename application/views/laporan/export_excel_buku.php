@@ -3,7 +3,7 @@
     header("Content-Disposition: attachment; filename=$title.xls");
     header("Pragma: no-cache");
     header("Expires: 0");
-				?>
+	?>
 	
 <h3>
 	<center>

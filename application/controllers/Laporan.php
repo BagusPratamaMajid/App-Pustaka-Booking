@@ -62,6 +62,55 @@ class Laporan extends CI_Controller {
 			$this->load->view('laporan/export_excel_buku', $data);
 	}
 
+	public function laporan_pinjam() 
+	{
+			$data['judul'] = 'Laporan Data Peminjaman';
+			$data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
+			$data['laporan'] = $this->db->query("SELECT * FROM pinjam, detail_pinjam, buku, user WHERE detail_pinjam.id_buku=buku.id AND pinjam.id_user=user.id AND pinjam.no_pinjam=detail_pinjam.no_pinjam")->result_array();
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('pinjam/laporan_pinjam', $data);
+			$this->load->view('templates/footer');
+	}
+
+	public function cetak_laporan_pinjam() 
+	{
+			$data['laporan'] = $this->db->query("SELECT * FROM pinjam, detail_pinjam, buku, user WHERE detail_pinjam.id_buku=buku.id AND pinjam.id_user=user.id AND pinjam.no_pinjam=detail_pinjam.no_pinjam")->result_array();
+
+			$this->load->view('pinjam/laporan-print-pinjam', $data);
+	}
+
+	public function laporan_pinjam_pdf() 
+	{
+		$data['laporan'] = $this->db->query("SELECT * FROM pinjam, detail_pinjam, buku, user WHERE detail_pinjam.id_buku=buku.id AND pinjam.id_user=user.id AND pinjam.no_pinjam=detail_pinjam.no_pinjam")->result_array(); 
+
+		$sroot = $_SERVER['DOCUMENT_ROOT'];
+		include $sroot."/codeigniter_3/pustaka-booking/application/third_party/dompdf/autoload.inc.php";
+		$dompdf = new Dompdf\Dompdf();	
+
+		$this->load->view('pinjam/laporan-pdf-pinjam', $data); 
+
+		$paper_size = 'A4'; // ukuran kertas
+		$orientation = 'landscape'; //tipe format kertas potrait atau landscape 
+		$html = $this->output->get_output(); 
+		
+		$dompdf->set_paper($paper_size, $orientation);
+		//Convert to PDF
+		$dompdf->load_html($html); 
+		$dompdf->render(); 
+		$dompdf->stream("laporan data peminjaman.pdf", array('Attachment' => 0)); 
+		// nama file pdf yang di hasilkan
+	}
+
+	public function export_excel_pinjam() 
+	{
+			$data = array( 'title' => 'Laporan Data Peminjaman Buku', 'laporan' => $this->db->query("SELECT * FROM pinjam, detail_pinjam, buku, user WHERE detail_pinjam.id_buku=buku.id AND pinjam.id_user=user.id AND pinjam.no_pinjam=detail_pinjam.no_pinjam")->result_array() );
+
+			$this->load->view('pinjam/export-excel-pinjam', $data);
+	}
+
 	
 }
 
